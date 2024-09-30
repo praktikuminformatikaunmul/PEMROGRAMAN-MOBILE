@@ -4,6 +4,8 @@ Flutter adalah framework open-source yang dikembangkan oleh Google untuk membang
 
 ## Mengapa Flutter?
 
+![Flutter Logo](https://upload.wikimedia.org/wikipedia/commons/1/17/Google-flutter-logo.png)
+
 1. **Kinerja Tinggi**: Flutter menggunakan mesin rendering khusus yang memungkinkan aplikasi berjalan dengan kinerja tinggi pada kedua platform iOS dan Android.
 2. **Pengembangan Cepat (Hot Reload)**: Flutter memiliki fitur *hot reload* yang memungkinkan pengembang untuk melihat perubahan kode secara langsung tanpa harus memulai ulang aplikasi.
 3. **Basis Kode Tunggal**: Dengan Flutter, kamu hanya perlu menulis satu kali kode untuk aplikasi yang dapat berjalan di berbagai platform, menghemat waktu dan usaha pengembangan.
