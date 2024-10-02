@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pertemuan_3/pages/HomePage.dart';
 import 'package:pertemuan_3/pages/login_page.dart';
+import 'package:pertemuan_3/pages/main_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,9 +20,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: const MyHomePage(),
+      home: const MyMainPage(),
     );
   }
 }
-
-

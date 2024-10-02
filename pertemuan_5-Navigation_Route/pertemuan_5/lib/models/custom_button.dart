@@ -20,7 +20,7 @@ class _MyCustomButtonState extends State<MyCustomButton> {
     return ElevatedButton(
       onPressed: widget.onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: Color(0xFFFFD18E),
+        backgroundColor: const Color(0xFFFFD18E),
         padding: const EdgeInsetsDirectional.symmetric(horizontal: 30),
         elevation: 5,
         shape: RoundedRectangleBorder(

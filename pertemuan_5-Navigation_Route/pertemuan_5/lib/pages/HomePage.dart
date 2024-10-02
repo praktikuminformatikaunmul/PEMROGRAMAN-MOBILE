@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:pertemuan_3/models/categories.dart';
 import 'package:pertemuan_3/models/doctor_list_card.dart';
+import 'package:pertemuan_3/pages/profile.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -15,57 +16,75 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color(0xFFFFD18E),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            const Text(
+              "Hello, John Doe",
+              style: TextStyle(
+                fontSize: 25,
+              ),
+            ),
+            Container(
+              width: 48,
+              height: 47,
+              margin: const EdgeInsets.only(left: 40),
+              decoration: BoxDecoration(
+                color: Colors.grey[300],
+                borderRadius: BorderRadius.circular(50),
+                image: const DecorationImage(
+                  image: AssetImage("assets/dandadan.jpeg"),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+      drawer: Drawer(
+        backgroundColor: const Color(0xFFE9FF97),
+        child: Column(
+          children: [
+            GestureDetector(
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyProfile()),
+                );
+              },
+              child: const UserAccountsDrawerHeader(
+                accountName: Text(
+                  "Kuuhaku",
+                ),
+                accountEmail: Text(
+                  "Manikfilip03@gmail.com",
+                ),
+                currentAccountPicture: CircleAvatar(
+                  backgroundImage: AssetImage("assets/dandadan.jpeg"),
+                ),
+                decoration: BoxDecoration(
+                  color: Color(0xFFFFD18E),
+                ),
+              ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text('Settings'),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: const Icon(Icons.search),
+              title: const Text('Cari'),
+              onTap: () {},
+            ),
+          ],
+        ),
+      ),
       backgroundColor: const Color(0xFFE9FF97),
       body: ListView(
         children: [
-          SizedBox(
-            width: 100,
-            height: 77,
-            // color: Colors.yellow,
-            child: Row(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(12, 5, 10, 0),
-                      child: Text(
-                        'Hello, ',
-                        style: GoogleFonts.poppins(
-                          color: Colors.black,
-                          fontSize: 20,
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(12, 0, 10, 7),
-                      child: Text(
-                        'Jerome Bell',
-                        style: GoogleFonts.poppins(
-                          color: Colors.black,
-                          fontSize: 25,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(width: 112),
-                Container(
-                  width: 58,
-                  height: 57,
-                  decoration: BoxDecoration(
-                    color: Colors.grey[300],
-                    borderRadius: BorderRadius.circular(50),
-                    image: const DecorationImage(
-                      image: AssetImage("assets/dandadan.jpeg"),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
           Container(
             width: double.infinity,
             height: 170,
