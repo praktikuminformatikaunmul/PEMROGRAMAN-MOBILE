@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:pertemuan_3/models/categories.dart';
-import 'package:pertemuan_3/models/doctor_list_card.dart';
+import 'package:pertemuan_3/widget/categories.dart';
+import 'package:pertemuan_3/widget/doctor_list_card.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pertemuan_3/pages/HomePage.dart';
 import 'package:pertemuan_3/widget/TextField.dart';
 import 'package:pertemuan_3/widget/custom_button.dart';
 import 'package:pertemuan_3/widget/password_field.dart';
@@ -17,6 +18,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
   bool obscureText = true;
   bool _setuju = false;
   String? _selectedGender;
+
   void _togglePasswordVisibility() {
     setState(() {
       obscureText = !obscureText; // Mengubah status visibility
@@ -26,16 +28,56 @@ class _MyLoginPageState extends State<MyLoginPage> {
   String _result = ''; // Variabel untuk menyimpan hasil inputan
 
   void _submit() {
-    setState(() {
-      _result = 'Username: ${username.text}\n'
-                'Password: ${password.text}\n'
-                'Gender: ${_selectedGender ?? "Belum memilih"}\n'
-                'Setuju: ${_setuju ? "Ya" : "Tidak"}\n';
-      username.clear();
-      password.clear();
-      _selectedGender = null;
-      _setuju = false;
-    });
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            'Konfirmasi',
+            style: GoogleFonts.poppins(),
+          ),
+          content: Text(
+            'Apakah Anda yakin ingin mendaftar dengan username "${username.text}"?',
+            style: GoogleFonts.poppins(),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Tutup dialog
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text('Cancel'),
+                    duration: Duration(seconds: 3),
+                  ),
+                );
+              },
+              child: Text(
+                'Cancel',
+                style: GoogleFonts.poppins(),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Selamat datang, ${username.text}!'),
+                    duration: const Duration(seconds: 5),
+                  ),
+                );
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MyHomePage()), // Ganti dengan halaman utama Anda
+                  );                
+              },
+              child: Text(
+                'Confirm',
+                style: GoogleFonts.poppins(),
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -72,9 +114,10 @@ class _MyLoginPageState extends State<MyLoginPage> {
             margin: const EdgeInsets.only(top: 20),
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: MyPassWordField(
-                controller: password,
-                obsecure: obscureText,
-                onvisibility: _togglePasswordVisibility),
+              controller: password,
+              obsecure: obscureText,
+              onvisibility: _togglePasswordVisibility,
+            ),
           ),
           Container(
             width: double.infinity,
@@ -91,7 +134,9 @@ class _MyLoginPageState extends State<MyLoginPage> {
                   child: Text(
                     "Gender",
                     style: GoogleFonts.poppins(
-                        fontSize: 16, fontWeight: FontWeight.bold),
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 Row(
@@ -100,14 +145,11 @@ class _MyLoginPageState extends State<MyLoginPage> {
                     Row(
                       children: [
                         Radio<String>(
-                          value:
-                              'Cowo', // Nilai yang akan disimpan jika dipilih
-                          groupValue:
-                              _selectedGender, // Grup nilai radio button
+                          value: 'Cowo', // Nilai yang akan disimpan jika dipilih
+                          groupValue: _selectedGender, // Grup nilai radio button
                           onChanged: (value) {
                             setState(() {
-                              _selectedGender =
-                                  value; // Mengubah nilai yang dipilih
+                              _selectedGender = value; // Mengubah nilai yang dipilih
                             });
                           },
                         ),
@@ -120,14 +162,11 @@ class _MyLoginPageState extends State<MyLoginPage> {
                     Row(
                       children: [
                         Radio<String>(
-                          value:
-                              'Cewe', // Nilai yang akan disimpan jika dipilih
-                          groupValue:
-                              _selectedGender, // Grup nilai radio button
+                          value: 'Cewe', // Nilai yang akan disimpan jika dipilih
+                          groupValue: _selectedGender, // Grup nilai radio button
                           onChanged: (value) {
                             setState(() {
-                              _selectedGender =
-                                  value; // Mengubah nilai yang dipilih
+                              _selectedGender = value; // Mengubah nilai yang dipilih
                             });
                           },
                         ),
@@ -155,9 +194,9 @@ class _MyLoginPageState extends State<MyLoginPage> {
                   },
                 ),
                 Text(
-                  "Accept of aggrement",
+                  "Accept of agreement",
                   style: GoogleFonts.poppins(fontSize: 16),
-                )
+                ),
               ],
             ),
           ),
@@ -166,7 +205,7 @@ class _MyLoginPageState extends State<MyLoginPage> {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: MyCustomButton(
               onPressed: _submit,
-              title: "Masuk Bang"
+              title: "Sign Up",
             ),
           ),
           Expanded(
