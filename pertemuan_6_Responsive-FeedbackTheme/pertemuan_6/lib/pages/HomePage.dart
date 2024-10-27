@@ -35,24 +35,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: AppTheme.buttonTextColor,
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const MyLoginPage()));
-              },
-              child: Container(
-                width: getResponsiveSize(48),
-                height: getResponsiveSize(47),
-                margin: const EdgeInsets.only(left: 40),
-                decoration: BoxDecoration(
-                  color: Colors.grey[300],
-                  borderRadius: BorderRadius.circular(50),
-                  image: const DecorationImage(
-                    image: AssetImage("assets/dandadan.jpeg"),
-                    fit: BoxFit.cover,
-                  ),
+            Container(
+              width: getResponsiveSize(48),
+              height: getResponsiveSize(47),
+              margin: const EdgeInsets.only(left: 40),
+              decoration: BoxDecoration(
+                color: Colors.grey[300],
+                borderRadius: BorderRadius.circular(50),
+                image: const DecorationImage(
+                  image: AssetImage("assets/dandadan.jpeg"),
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
@@ -175,8 +167,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         onTap: () {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
-                              content:
-                                  Text("You're, ready!"),
+                              content: Text("You're, ready!"),
                               duration: Duration(seconds: 5),
                             ),
                           );
